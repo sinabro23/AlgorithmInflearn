@@ -3,28 +3,46 @@
 using namespace std;
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
+int digit_sum(int x)
+{
+	int ret = 0;
+
+	while (x != 0)
+	{
+		ret += x % 10;
+		x /= 10;
+	}
+
+	return ret;
+}
 
 int main(int argc, char** argv) 
 {
 	//freopen("input.txt", "rt", stdin);
-	int cnt[50001] = { 0 };
-	int N = 0;
+	int N, num = 0, max = -2147000000, sum = 0, maxNum = 0;
 	cin >> N;
 
-	for (int i = 1; i <= N; i++)
+	for (int i = 0; i < N; i++)
 	{
-		for (int j = i; j <= N; j = j + i)
+		cin >> num;
+
+		if (digit_sum(num) > max)
 		{
-			cnt[j]++;
+			max = digit_sum(num);
+			maxNum = num;
 		}
+
+		else if(digit_sum(num) == max)
+		{
+			if (num > maxNum)
+			{
+				maxNum = num;
+			}
+		}
+
 	}
 
-	cout << cnt[1]; 
-
-	for (int i = 2; i <= N; i++)
-	{
-		cout << ' ' << cnt[i];
-	}
+	cout << maxNum;
 
 	return 0;
 }
