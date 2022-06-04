@@ -6,22 +6,30 @@ using namespace std;
 int main(int argc, char** argv) 
 {
 	//freopen("input.txt", "rt", stdin);
-	int N = 0;
-	cin >> N;
+	string str;
+	cin >> str;
 
-	int num = 0, sum = 0;
+	int cnt[10] = { 0 };
+	int max = -2147000000, maxIndex = -1;
 
-	for (int i = 1; i <= N; i++)
+	for (int i = 0; i < str.size(); i++)
 	{
-		num = i;
-		while (num >0)
+		int index = str[i] - '0';
+		cnt[index]++;
+	}
+
+	for (int i = 0; i <= 9; i++)
+	{
+		if (cnt[i] >= max)
 		{
-			sum++;
-			num /= 10;
+			max = cnt[i];
+			maxIndex = i;
 		}
 	}
 
-	cout << sum;
+	cout << maxIndex;
+	
+
 
 	return 0;
 }
