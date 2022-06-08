@@ -7,47 +7,32 @@ using namespace std;
 int main(int argc, char** argv) 
 {
 	//freopen("input.txt", "rt", stdin);
-string str;
-	cin >> str;
+int n = 0;
+	cin >> n;
 
-	int a[70] = { 0 };
-	int b[70] = { 0 };
+	bool* flag = new bool[n];
 
-	for (int i = 0; i < str.size(); i++)
+	int num = 0, answer = 0, temp = 0;
+	for (int i = 0; i < n; i++)
 	{
-		if (str[i] >= 65 && str[i] <= 90)
-		{
-			a[str[i] - 64]++;
-		}
+		cin >> num;
+		cin >> answer;
+		
+		if (((num * (num + 1)) / 2) == answer)
+			flag[i] = true;
 		else
-		{
-			a[str[i] - 96]++;
-		}
+			flag[i] = false;
 	}
 
-	cin >> str;
-	for (int i = 0; i < str.size(); i++)
+	for (int i = 0; i < n; i++)
 	{
-		if (str[i] >= 65 && str[i] <= 90)
-		{
-			b[str[i] - 64]++;
-		}
+		if (flag[i])
+			cout << "YES" << endl;
 		else
-		{
-			b[str[i] - 96]++;
-		}
+			cout << "NO" << endl;
 	}
 
-	for (int i = 1; i <= 52; i++)
-	{
-		if (a[i] != b[i])
-		{
-			cout << "NO";
-			exit(0);
-		}
-	}
-
-	cout << "YES";
+	delete[] flag;
 
 	return 0;
 }
