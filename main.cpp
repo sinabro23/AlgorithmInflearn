@@ -7,32 +7,25 @@ using namespace std;
 int main(int argc, char** argv) 
 {
 	//freopen("input.txt", "rt", stdin);
-int n = 0;
-	cin >> n;
-
-	bool* flag = new bool[n];
-
-	int num = 0, answer = 0, temp = 0;
+	int n = 0, m = 0;
+	cin >> n >> m;
+	
+	int current = 0, max = -2147000000, cnt = 0;
 	for (int i = 0; i < n; i++)
 	{
-		cin >> num;
-		cin >> answer;
-		
-		if (((num * (num + 1)) / 2) == answer)
-			flag[i] = true;
+		cin >> current;
+		if (current > m)
+		{
+			cnt++;
+			if (cnt > max)
+				max = cnt;
+		}
 		else
-			flag[i] = false;
+			cnt = 0;
+			
 	}
 
-	for (int i = 0; i < n; i++)
-	{
-		if (flag[i])
-			cout << "YES" << endl;
-		else
-			cout << "NO" << endl;
-	}
-
-	delete[] flag;
+	cout << max;
 
 	return 0;
 }
