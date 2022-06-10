@@ -7,25 +7,29 @@ using namespace std;
 int main(int argc, char** argv) 
 {
 	//freopen("input.txt", "rt", stdin);
-	int n = 0, m = 0;
-	cin >> n >> m;
-	
-	int current = 0, max = -2147000000, cnt = 0;
+	int n = 0;
+	cin >> n;
+
+	int* height = new int[n];
+
+	int count = 0;
 	for (int i = 0; i < n; i++)
 	{
-		cin >> current;
-		if (current > m)
-		{
-			cnt++;
-			if (cnt > max)
-				max = cnt;
-		}
-		else
-			cnt = 0;
-			
+		cin >> height[i];
 	}
 
-	cout << max;
+	int max = height[n - 1];
+	for (int i = n - 1; i >= 0; i--)
+	{
+		if (height[i] > max)
+		{
+			max = height[i];
+			count++;
+		}
+	}
 
+	cout << count;	
+
+	delete[] height;
 	return 0;
 }
