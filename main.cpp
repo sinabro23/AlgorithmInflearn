@@ -7,29 +7,41 @@ using namespace std;
 int main(int argc, char** argv) 
 {
 	//freopen("input.txt", "rt", stdin);
-	int n = 0;
+int n = 0;
 	cin >> n;
 
-	int* height = new int[n];
+	int* A = new int[n];
+	int* B = new int[n];
 
-	int count = 0;
 	for (int i = 0; i < n; i++)
 	{
-		cin >> height[i];
+		cin >> A[i];
 	}
 
-	int max = height[n - 1];
-	for (int i = n - 1; i >= 0; i--)
+	for (int i = 0; i < n; i++)
 	{
-		if (height[i] > max)
-		{
-			max = height[i];
-			count++;
-		}
+		cin >> B[i];
 	}
 
-	cout << count;	
+	for (int i = 0; i < n; i++)
+	{
+		if (A[i] == B[i])
+			cout << 'D' << endl;
+		else if (A[i] == 1 && B[i] == 2)
+			cout << "B" << endl;
+		else if (A[i] == 1 && B[i] == 3)
+			cout << "A" << endl;
+		else if (A[i] == 2 && B[i] == 1)
+			cout << "A" << endl;
+		else if (A[i] == 2 && B[i] == 3)
+			cout << "B" << endl;
+		else if (A[i] == 3 && B[i] == 1)
+			cout << "B" << endl;
+		else if (A[i] == 3 && B[i] == 2)
+			cout << "A" << endl;
+	}
 
-	delete[] height;
+	delete[] A;
+	delete[] B;
 	return 0;
 }
