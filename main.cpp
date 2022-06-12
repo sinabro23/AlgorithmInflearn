@@ -41,6 +41,7 @@ int n = 0;
 			cout << "A" << endl;
 	}
 
+//df
 	delete[] A;
 	delete[] B;
 	return 0;
