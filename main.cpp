@@ -1,5 +1,5 @@
 #include <iostream>
-#include <stdio.h>
+#include <vector>
 using namespace std;
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
@@ -7,56 +7,30 @@ using namespace std;
 int main(int argc, char** argv) 
 {
 	//freopen("input.txt", "rt", stdin);
-int totalA = 0, totalB = 0;
-	int lastWinner = 0; // 1ÀÌ¸é A, 2¸é B
+	int n, k, sum = 0, max = 0;
+	cin >> n >> k;
 
-	int A[10] = { 0 };
-	int B[10] = { 0 };
-	for (int i = 0; i < 10; i++)
+	vector<int> v(n);
+	for (int i = 0; i < n; i++)
 	{
-		cin >> A[i];
+		cin >> v[i];
 	}
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < k; i++)
 	{
-		cin >> B[i];
+		sum += v[i];
 	}
 
-	for (int i = 0; i < 10; i++)
+	max = sum;
+
+	for (int i = k; i < n; i++)
 	{
-		if (A[i] == B[i])
-		{
-			totalA += 1;
-			totalB += 1;
-		}
-		else if (A[i] > B[i])
-		{
-			totalA += 3;
-			lastWinner = 1;
-		}
-		else
-		{
-			totalB += 3;
-			lastWinner = 2;
-		}
+		sum = sum + (v[i] - v[i - k]);
+		if (sum > max)
+			max = sum;
 	}
 
-	cout << totalA << ' ' << totalB << endl;
-
-	if (totalA > totalB)
-		cout << "A";
-	else if (totalB > totalA)
-		cout << "B";
-	else
-	{
-		if (lastWinner == 1)
-			cout << "A";
-		else if (lastWinner == 2)
-			cout << "B";
-		else if (lastWinner == 0)
-			cout << "D";
-	}
-
+	cout << max;	
 
 	return 0;
 }
