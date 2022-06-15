@@ -7,30 +7,32 @@ using namespace std;
 int main(int argc, char** argv) 
 {
 	//freopen("input.txt", "rt", stdin);
-	int n, k, sum = 0, max = 0;
-	cin >> n >> k;
+	int n;
+	cin >> n;
 
-	vector<int> v(n);
-	for (int i = 0; i < n; i++)
+	int pre = 0, now = 0, max = 0, count = 1;
+
+	cin >> pre;
+
+	for (int i = 1; i < n; i++)
 	{
-		cin >> v[i];
+		cin >> now;
+
+		if (now >= pre)
+		{
+			count++;
+			if (count > max)
+				max = count;
+		}
+		else
+			count = 1;
+
+		pre = now;
 	}
 
-	for (int i = 0; i < k; i++)
-	{
-		sum += v[i];
-	}
 
-	max = sum;
+	cout << max;
 
-	for (int i = k; i < n; i++)
-	{
-		sum = sum + (v[i] - v[i - k]);
-		if (sum > max)
-			max = sum;
-	}
 
-	cout << max;	
-
-	return 0;
+	return 0;		
 }
