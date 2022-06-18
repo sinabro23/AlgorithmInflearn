@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
@@ -7,32 +8,29 @@ using namespace std;
 int main(int argc, char** argv) 
 {
 	//freopen("input.txt", "rt", stdin);
-	int n;
+	int n = 0;
 	cin >> n;
 
-	int pre = 0, now = 0, max = 0, count = 1;
+	vector<int> v(n, 0);
+	int pre = 0, now = 0;
 
 	cin >> pre;
 
 	for (int i = 1; i < n; i++)
 	{
 		cin >> now;
-
-		if (now >= pre)
-		{
-			count++;
-			if (count > max)
-				max = count;
-		}
+		int index = abs(now - pre);
+		if (index >= 0 && index < n && v[index] == 0)
+			v[index]++;
 		else
-			count = 1;
-
+		{
+			cout << "NO";
+			return 0;
+		}
 		pre = now;
 	}
 
+	cout << "YES";
 
-	cout << max;
-
-
-	return 0;		
+	return 0;
 }
