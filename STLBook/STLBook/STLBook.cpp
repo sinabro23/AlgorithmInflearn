@@ -1,41 +1,30 @@
 ﻿#include <iostream>
-#include <map>
+#include <vector>
 #include <algorithm>
 using namespace std;
 
 int main()
 {
-    map<int, int> m;
-    m[5] = 100;
-    m[3] = 100;
-    m[8] = 30;
-    m[4] = 40;
-    m[1] = 70;
-    m[7] = 100;
-    m[9] = 50;
+    vector<int> v;
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(30);
+    v.push_back(30);
+    v.push_back(40);
+    v.push_back(40);
+    v.push_back(50);
 
-    map<int, int>::iterator iter;
-    for (iter = m.begin(); iter != m.end(); ++iter)
-        cout << "(" << iter->first << ',' << iter->second << ")" << " ";
+    for (auto i = 0; i < v.size(); i++)
+        cout << v[i] << " ";
     cout << endl;
 
-    iter = m.find(5);
-    if (iter != m.end())
-        cout << "key 5 에 매핑된 value : " << iter->second << endl;
+    vector<int>::iterator iter;
+    iter = adjacent_find(v.begin(), v.end());
 
-    map<int, int>::iterator lower_iter;
-    map<int, int>::iterator upper_iter;
-
-    lower_iter = m.lower_bound(5);
-    upper_iter = m.upper_bound(5);
-
-    cout << "구간 [lower_iter, upper_iter]의 순차열 : ";
-    for(iter = lower_iter; iter !=upper_iter;++iter)
-        cout << "(" << iter->first << ',' << iter->second << ")" << " ";
+    if (iter != v.end())
+        cout << *iter << " ";
     cout << endl;
-
-    pair<map<int, int>::iterator, map<int, int>::iterator> iter_pair;
-    iter_pair = m.equal_range(5);
+   
 
     return 0;
         
