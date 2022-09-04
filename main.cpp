@@ -1,36 +1,47 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include<iostream>
 using namespace std;
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
+int digit_sum(int x)
+{
+	int sum = 0;
+	
+	while(x > 0)
+	{
+		sum += x % 10;
+		x /= 10;	
+	}
+	
+	return sum;
+}
 
-int main(int argc, char** argv) 
+int main()
 {
 	//freopen("input.txt", "rt", stdin);
-	int n = 0;
-	cin >> n;
-
-	vector<int> v(n, 0);
-	int pre = 0, now = 0;
-
-	cin >> pre;
-
-	for (int i = 1; i < n; i++)
+	int maxSum = -2147000000, maxNum = -2147000000;
+	int cnt = 0; 
+	cin>>cnt;
+	
+	for(int i = 0; i< cnt; i++)
 	{
-		cin >> now;
-		int index = abs(now - pre);
-		if (index >= 0 && index < n && v[index] == 0)
-			v[index]++;
-		else
+		int number = 0;
+		cin >> number;
+		
+		if(digit_sum(number) > maxSum)
 		{
-			cout << "NO";
-			return 0;
+			maxNum = number;
+			maxSum = digit_sum(number);
 		}
-		pre = now;
+			
+		else if(digit_sum(number) == maxSum)
+		{
+			if(number > maxNum)
+				maxNum = number;
+		}
+		
+	
 	}
-
-	cout << "YES";
-
+	
+		cout<< maxNum;
+	
 	return 0;
 }
